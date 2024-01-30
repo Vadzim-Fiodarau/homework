@@ -1,0 +1,75 @@
+.rhinoceros {
+  min-width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20px;
+}
+
+.rhino-inputs {
+  min-width: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rhino-inputs__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.rhino-inputs__form h4 {
+  margin: 0 0 5px 0;
+}
+
+.rhino-inputs__form__input {
+  margin-bottom: 10px;
+}
+
+.create-loading {
+  height: 21px;
+}
+
+.rhino-table-container {
+  min-width: 800px;
+}
+
+.rhino-table {
+  width: 800px;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.rhino-cell {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.rhino-cell--header {
+  height: 25px;
+}
+
+.rhino-cell--body {
+  height: 30px;
+  line-height: 16px;
+}
+
+.rhino-cell--id {
+  width: 400px;
+}
+
+.rhino-cell--name {
+  width: 200px;
+}
+
+.rhino-cell--species {
+  width: 200px;
+}
+
+.rhino-errors {
+  max-width: 800px;
+  color: red;
+  list-style-type: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+}

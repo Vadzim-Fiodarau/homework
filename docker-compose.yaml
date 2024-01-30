@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+ api:
+  build: ./api
+  command: "npm start"
+  ports:
+    - 4000:4000
+  environment:
+    PORT: 4000
+ frontend:
+  build: ./frontend
+  command: "npm start"
+  stdin_open: true # Necessary due to change in React Scripts 3.4.0+
+  ports:
+    - 4001:4001
+  environment:
+    PORT: 4001
