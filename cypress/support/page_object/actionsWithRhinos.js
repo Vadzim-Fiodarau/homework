@@ -1,12 +1,49 @@
-export class ActionsWithRhinos {
+export class HomePage {
 
-   getAllRhinosWithNoFilterValue() {
+   // getAllRhinosWithNoFilterValue() {
+   //    cy.contains('button', 'Get all Rhinos').click()
+   // }
+
+
+   getNumberOfRhinosFromApi() {
+      cy.intercept('GET', 'http://localhost:4000/rhinoceros?').as('getRhinos')
+      cy.contains('button', 'Get all Rhinos').click()
+      cy.wait('@getRhinos')
+      cy.get('@getRhinos').then(xhr => {
+         let numberOfRhinos = xhr.response.body.rhinoceroses.length
+         return hr.response.body.rhinoceroses.length
+      })
+   }
+   getNumberOfRhinosFromUI() {
+      cy.get('.rhino-table-body').then(ammountOfRhinos => {
+         const ammountOfRhinosOnPage = ammountOfRhinos.children().length
+      })
+      return ammountOfRhinosOnPage
+   }
+
+   clickGetAllRhinos() {
       cy.contains('button', 'Get all Rhinos').click()
    }
 
+   clickCreateRhino() {
+      cy.contains('button', 'Create Rhino').click()
+   }
+
+   createRhino(rhinoName, rhinoSpecies) {
+      cy.get('#create_rhino_name').type(rhinoName)
+      cy.get('#create_rhino_species').type(rhinoSpecies)
+      clickCreateRhino()
+   }
+
+   verifyRhinosAmmount() {
+
+   }
+
+
    verifyFullSetOfRhinosInSystem() {
       cy.intercept('GET', 'http://localhost:4000/rhinoceros?').as('getRhinos')
-      cy.contains('button', 'Get all Rhinos').click()
+      // cy.contains('button', 'Get all Rhinos').click()
+      clickGetAllRhinos();
       cy.wait('@getRhinos')
       cy.get('@getRhinos').then(xhr => {
          cy.get('.rhino-table-body').then(ammountOfRhinos => {
@@ -14,6 +51,13 @@ export class ActionsWithRhinos {
             expect(xhr.response.body.rhinoceroses.length).to.equal(ammountOfRhinosOnPage)
          })
       })
+   }
+
+   // Since there is a bug #3 we can't see rhinos right away, this function is created just to unblock tests 
+   // remove it after Bug #3 is fixed
+   reloadPageToSeeRhinos() {
+      cy.reload();
+
    }
 
    createNewRhinos(name, species) {
@@ -48,4 +92,4 @@ export class ActionsWithRhinos {
    }
 }
 
-export const rhinos = new ActionsWithRhinos()
+export const onHomePage = new HomePage()
